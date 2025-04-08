@@ -1,0 +1,244 @@
+/* General reset for margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Page container with title */
+  .page-container {
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f1f1f1;
+  }
+  
+  /* Title */
+  .page-title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #0e76a8;
+  }
+  
+  /* Chatbot button at the bottom right */
+  .open-chat-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #0e76a8;
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .open-chat-btn:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Chatbot Popup */
+  .chat-popup {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 350px;
+    height: 400px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+  }
+  
+  /* Chat container inside the popup */
+  .chat-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  
+  /* Messages section */
+  .messages {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+    margin-bottom: 15px;
+  }
+  
+  /* Individual message bubble styling */
+  .messages div {
+    max-width: 75%;
+    padding: 12px 16px;
+    border-radius: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    word-wrap: break-word;
+    animation: slideIn 0.5s ease-in-out;
+  }
+  
+  /* Keyframe for sliding messages */
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Custom message for the user (align right) */
+  .messages div:nth-child(odd) {
+    align-self: flex-end;
+    background-color: #0e76a8;
+    color: white;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 5px;
+  }
+  
+  /* Custom message for recipient (align left) */
+  .messages div:nth-child(even) {
+    align-self: flex-start;
+    background-color: #f1f1f1;
+    color: #333;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 5px;
+  }
+  
+  /* Input field */
+  input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-top: 10px;
+    font-size: 16px;
+    border-radius: 30px;
+    border: 2px solid #ddd;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  input:focus {
+    border-color: #0e76a8;
+    box-shadow: 0 0 5px rgba(14, 118, 168, 0.5);
+  }
+  
+  /* Send button */
+  button {
+    background-color: #0e76a8;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #0b5d7f;
+  }
+  
+  button:active {
+    transform: scale(0.98);
+  }
+  
+  /* Close button for the chat popup */
+  .close-chat-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .close-chat-btn:hover {
+    background-color: #ff3333;
+  }
+  
+  /* Typing animation for the user */
+  .typing-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 0;
+    font-size: 16px;
+    color: #0e76a8;
+    visibility: hidden;
+  }
+  
+  .typing-indicator span {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin: 0 3px;
+    border-radius: 50%;
+    background-color: #0e76a8;
+    animation: blink 1s infinite;
+  }
+  
+  .typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  
+  .typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+  
+  /* Blink animation for the typing indicator */
+  @keyframes blink {
+    0%, 100% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  
+  /* Smooth scroll when chat history gets long */
+  .messages {
+    scroll-behavior: smooth;
+  }
+  
+  /* Focus styles for inputs */
+  input:focus,
+  button:focus {
+    outline: none;
+    border: 2px solid #0e76a8;
+    box-shadow: 0 0 5px rgba(14, 118, 168, 0.5);
+  }
+  
+  /* Hover effect on input */
+  input:hover {
+    border-color: #0e76a8;
+    box-shadow: 0 2px 8px rgba(14, 118, 168, 0.2);
+  }
+  
+  /* Button hover effect */
+  button:hover {
+    background-color: #0b5d7f;
+    transform: scale(1.05);
+  }
+  

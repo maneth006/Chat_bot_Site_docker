@@ -1,0 +1,21 @@
+<div class="page-container">
+  <h1 class="page-title">ANNI DI PIOMBO</h1>
+  
+  <!-- Chatbot Button -->
+  <button class="open-chat-btn" (click)="openChat()">💬 Chat</button>
+  
+  <!-- Chatbot Popup -->
+  <div *ngIf="chatOpen" class="chat-popup">
+    <div class="chat-container">
+      <div class="messages">
+        <div *ngFor="let msg of messages">{{ msg }}</div>
+
+        <!-- Aggiungi un indicatore di caricamento mentre il server "scrive" -->
+        <div *ngIf="isTyping" class="server-typing">Server sta scrivendo...</div>
+      </div>
+      <input placeholder="Scrivi un messaggio..." #message (keydown)="onKeydown($event, message)" />
+      <button (click)="sendMessage(message)">Invia</button>
+    </div>
+    <button class="close-chat-btn" (click)="closeChat()">X</button>
+  </div>
+</div>
