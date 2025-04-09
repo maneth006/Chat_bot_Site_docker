@@ -1,21 +1,24 @@
 <div class="page-container">
-  <h1 class="page-title">ANNI DI PIOMBO</h1>
-  
   <!-- Chatbot Button -->
-  <button class="open-chat-btn" (click)="openChat()">💬 Chat</button>
+  <button class="open-chat-btn" (click)="openChat()">💬</button>
   
   <!-- Chatbot Popup -->
   <div *ngIf="chatOpen" class="chat-popup">
-    <div class="chat-container">
-      <div class="messages">
-        <div *ngFor="let msg of messages">{{ msg }}</div>
-
-        <!-- Aggiungi un indicatore di caricamento mentre il server "scrive" -->
-        <div *ngIf="isTyping" class="server-typing">Server sta scrivendo...</div>
-      </div>
-      <input placeholder="Scrivi un messaggio..." #message (keydown)="onKeydown($event, message)" />
-      <button (click)="sendMessage(message)">Invia</button>
+    <div class="chat-header">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Aldo_Moro_portrait.jpg" alt="Aldo Moro" class="chat-avatar" />
+      <span class="chat-name">Piombobot</span>
+      <button class="close-chat-btn" (click)="closeChat()">X</button>
     </div>
-    <button class="close-chat-btn" (click)="closeChat()">X</button>
+    <div class="chat-body">
+      <div class="messages">
+        <div *ngFor="let msg of messages" class="message">
+          {{ msg }}
+        </div>
+        <!-- Typing indicator -->
+        <div *ngIf="isTyping" class="server-typing">Server is typing...</div>
+      </div>
+      <textarea placeholder="Type a message..." #message (input)="adjustHeight(message)" (keydown)="onKeydown($event, message)"></textarea>
+      <button (click)="sendMessage(message)">Send</button>
+    </div>
   </div>
 </div>

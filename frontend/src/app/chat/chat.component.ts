@@ -11,7 +11,7 @@ export class ChatComponent implements OnInit {
   message: string = '';
   messages: string[] = [];
   chatOpen: boolean = false;
-  isTyping: boolean = false;  // Variabile per gestire lo stato di "scrittura" del server
+  isTyping: boolean = false;  // Variabili per gestire lo stato di "scrittura" del server
 
   ngOnInit() {
     // Connessione al server Flask con Socket.IO (usa HTTPS)
@@ -24,7 +24,7 @@ export class ChatComponent implements OnInit {
     });
   }
 
-  sendMessage(message: HTMLInputElement) {
+  sendMessage(message: HTMLTextAreaElement) {
     this.message = message.value;
     if (this.message.trim()) {
       // Aggiungi il messaggio dell'utente alla chat
@@ -50,9 +50,15 @@ export class ChatComponent implements OnInit {
   }
 
   // Metodo per gestire la pressione di un tasto (Enter)
-  onKeydown(event: KeyboardEvent, message: HTMLInputElement): void {
+  onKeydown(event: KeyboardEvent, message: HTMLTextAreaElement): void {
     if (event.key === 'Enter') {
       this.sendMessage(message);
     }
+  }
+
+  // Metodo per gestire l'altezza dinamica del campo di input
+  adjustHeight(input: HTMLTextAreaElement) {
+    input.style.height = 'auto';  // Reset height to auto first
+    input.style.height = `${input.scrollHeight}px`;  // Set height based on content scrollHeight
   }
 }
