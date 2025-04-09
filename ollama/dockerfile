@@ -1,0 +1,9 @@
+FROM ollama/ollama:latest
+
+# Esponi la porta su cui Ollama ascolta
+EXPOSE 11434
+
+RUN ollama pull llama3
+
+# Avvia Ollama
+CMD ["ollama", "serve"]
