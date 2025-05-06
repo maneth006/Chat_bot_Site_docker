@@ -9,21 +9,21 @@ services:
       - ollama_data:/root/.ollama
     restart: always
 
-  backend:
-    build: ./backend
+  chat_backend:
+    build: ./chat_backend
     ports:
       - "5000:5000"
     depends_on:
       - ollama
     volumes:
-      - ./backend:/app
+      - ./chat_backend:/app
 
   frontend:
     build: ./frontend
     ports:
       - "4200:4200"
     depends_on:
-      - backend
+      - chat_backend
     volumes:
       - ./frontend:/app
     command: npm start

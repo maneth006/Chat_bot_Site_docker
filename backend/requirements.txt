@@ -1,5 +1,0 @@
-flask
-flask-socketio==5.2.0
-flask_cors
-werkzeug==2.2.2
-ollama
